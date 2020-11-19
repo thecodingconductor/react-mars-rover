@@ -16,6 +16,7 @@ const App = () => {
           <h1>Mars Rover</h1>
           <Switch>
             <Route exact path="/" component={Home}></Route>
+            <Route exact path="/favorites" component={Favorites}></Route>
           </Switch>
         </div>
       </Router>
