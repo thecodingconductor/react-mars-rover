@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/pages/Home';
+import Auth from './components/pages/Auth';
+import Favorites from './components/pages/Favorites';
+import NavState from './context/nav/NavState';
+import AuthState from './context/auth/AuthState';
+import FavoritesState from './context/favorites/FavoritesState';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthState>
+      <Router>
+        <div className="App">
+          <h1>Mars Rover</h1>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+          </Switch>
+        </div>
+      </Router>
+    </AuthState>
+
   );
 }
 
