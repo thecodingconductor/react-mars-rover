@@ -5,6 +5,7 @@ import {
     REGISTER_USER,
     LOGOUT_USER,
     LOGIN_USER,
+    LOAD_USER,
     AUTH_USER
 } from '../types';
 
@@ -22,12 +23,19 @@ const AuthState = props => {
 
     const [state, dispatch] = useReducer(authReducer, initialState);
 
-    const loadUser = async () => {
-        console.log('loaduser')
+    const loadUser = () => {
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        dispatch({
+            type: LOAD_USER,
+            payload: currentUser
+        })
     }
 
-    const register = async formData => {
-        console.log('register')
+    const register = formData => {
+        // dispatch({
+        //     type: REGISTER_USER,
+        //     payload: formData
+        // })
     }
 
     const login = async formData => {
@@ -35,7 +43,7 @@ const AuthState = props => {
     }
 
     const logout = () => {
-        console.log('logout')
+        dispatch({ type: LOGOUT_USER });
     }
 
     const clearErrors = () => {

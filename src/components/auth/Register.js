@@ -6,10 +6,9 @@ import { Container, Form, Button } from 'react-bootstrap';
 const Register = props => {
 
     const authContext = useContext(AuthContext);
-
     const alertContext = useContext(AlertContext);
-
     const { setAlert } = alertContext;
+
     // clearErrors TODO
     const { register, error, clearErrors, isAuthenticated } = authContext;
 
@@ -39,6 +38,7 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
+
         if (name === '' || email === '' || password === '') {
             setAlert('Please enter all fields', 'danger');
         } else if (password !== password2) {
