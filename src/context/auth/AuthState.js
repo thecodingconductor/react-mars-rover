@@ -32,6 +32,7 @@ const AuthState = props => {
     }
 
     const register = formData => {
+        console.log(formData);
         // dispatch({
         //     type: REGISTER_USER,
         //     payload: formData

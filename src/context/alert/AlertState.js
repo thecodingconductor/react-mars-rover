@@ -7,7 +7,7 @@ import {
     REMOVE_ALERT
 } from '../types';
 
-export const AlertState = props => {
+const AlertState = props => {
 
     const initialState = [];
 
@@ -32,3 +32,5 @@ export const AlertState = props => {
         </AlertContext.Provider>
     )
 }
+
+export default AlertState;
