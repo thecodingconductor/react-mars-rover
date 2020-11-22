@@ -1,6 +1,13 @@
 import React, { useReducer } from 'react';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import jwtSecret from '../../config/secret';
+import { uuid } from 'uuidv4';
+
+
+
 import {
     REGISTER_USER,
     LOGOUT_USER,
@@ -12,10 +19,9 @@ import {
 const AuthState = props => {
 
     const initialState = {
+        token: localStorage.getItem('token'),
         isAuthenticated: null,
-        name: null,
-        email: null,
-        password: null,
+        user: null,
         loading: true,
         favorites: [],
         error: null
@@ -31,12 +37,41 @@ const AuthState = props => {
         })
     }
 
-    const register = formData => {
-        console.log(formData);
-        // dispatch({
-        //     type: REGISTER_USER,
-        //     payload: formData
-        // })
+    const register = async formData => {
+
+        const salt = await bcryptjs.genSalt(10);
+
+        formData.password = await bcryptjs.hash(formData.password, salt);
+
+        formData.id = uuid();
+
+        const user = formData;
+
+        const payload = {
+            user: {
+                id: user.id,
+            },
+        };
+
+        jwt.sign(
+            payload,
+            jwtSecret,
+            {
+                expiresIn: 3600,
+            },
+            (err, token) => {
+                if (err) throw err;
+                localStorage.setItem('token', JSON.stringify(token))
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+        );
+
+        console.log(user);
+
+        dispatch({
+            type: REGISTER_USER,
+            payload: user
+        })
     }
 
     const login = async formData => {

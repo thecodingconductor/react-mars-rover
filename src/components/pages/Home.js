@@ -1,13 +1,19 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import ImageContext from '../../context/image/imageContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
 
     const imageContext = useContext(ImageContext);
+    const authContext = useContext(AuthContext);
+    const { loadUser } = authContext;
     const { currentImage, generatePhoto, loading } = imageContext;
 
-
+    useEffect(() => {
+        loadUser();
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <div>
