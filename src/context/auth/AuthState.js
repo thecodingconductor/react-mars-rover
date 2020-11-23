@@ -24,10 +24,10 @@ import {
 const AuthState = props => {
 
     const initialState = {
-        token: localStorage.getItem('token'),
+        token: JSON.parse(localStorage.getItem('token')),
         isAuthenticated: null,
         user: null,
-        loading: false,
+        loading: true,
         error: null
     }
 
@@ -37,6 +37,7 @@ const AuthState = props => {
         console.log(localStorage.getItem('token'));
         if (!localStorage.getItem('token')) {
 
+            console.log('there is no token');
             dispatch({
                 type: AUTH_USER_FAIL
             })
@@ -94,7 +95,7 @@ const AuthState = props => {
             }
         );
 
-        console.log(user);
+
 
         dispatch({
             type: REGISTER_USER,
@@ -135,6 +136,7 @@ const AuthState = props => {
                     },
                     (err, token) => {
                         if (err) throw err;
+
                         localStorage.setItem('token', JSON.stringify(token))
 
                         dispatch({
@@ -165,18 +167,25 @@ const AuthState = props => {
         dispatch({ type: CLEAR_ERRORS })
     }
 
-    const checkEmail = (input) => {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (re.test(input.value.trim())) {
-
-        }
-    }
+    // const checkEmail = (input) => {
+    //     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //     if (!re.test(input.trim())) {
+    //         dispatch({
+    //             type: REGISTER_FAIL,
+    //             error: "Invalid Email"
+    //         });
+    //         return false;
+    //     } else {
+    //         return true
+    //     }
+    // }
 
 
 
 
     return (
         <AuthContext.Provider value={{
+            token: state.token,
             isAuthenticated: state.isAuthenticated,
             name: state.name,
             email: state.email,
@@ -190,7 +199,8 @@ const AuthState = props => {
             loadUser,
             login,
             logout,
-            clearErrors
+            clearErrors,
+            // checkEmail
         }}>
             {props.children}
         </AuthContext.Provider>

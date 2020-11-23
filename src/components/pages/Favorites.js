@@ -13,6 +13,7 @@ const Favorites = () => {
     // const { favorites } = user;
 
     useEffect(() => {
+        // console.log('favorites page fail');
         loadUser();
         // eslint-disable-next-line
     }, [])

@@ -10,7 +10,7 @@ const Register = props => {
     const { setAlert } = alertContext;
 
     // clearErrors TODO
-    const { register, error, clearErrors, isAuthenticated } = authContext;
+    const { register, error, clearErrors, isAuthenticated, checkEmail } = authContext;
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -18,6 +18,9 @@ const Register = props => {
         }
 
         if (error === 'User already exists') {
+            setAlert(error, 'danger');
+            clearErrors();
+        } else if (error === "Invalid Email") {
             setAlert(error, 'danger');
             clearErrors();
         }
@@ -38,11 +41,15 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
+        console.log(email);
 
         if (name === '' || email === '' || password === '') {
             setAlert('Please enter all fields', 'danger');
         } else if (password !== password2) {
             setAlert('Passwords do not match', 'danger');
+        } else if (!checkEmail(email)) {
+            console.log('error email');
+            setAlert('Enter valid email address', 'danger');
         } else {
             register({
                 name,
@@ -55,14 +62,14 @@ const Register = props => {
     return (
         <Fragment>
             <Container className="register-form-container">
-                <Form onSubmit={onSubmit}>
+                <Form onSubmit={onSubmit} noValidate>
                     <Form.Group>
                         <Form.Label htmlFor="name">Name</Form.Label>
                         <Form.Control type="name" name="name" value={name} onChange={onChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor="email">Email</Form.Label>
-                        <Form.Control type="email" name="email" value={email} onChange={onChange} />
+                        <Form.Control type="email" name="email" value={email} onChange={onChange} noValidate />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor="password">Password</Form.Label>

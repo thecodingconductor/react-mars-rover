@@ -18,6 +18,7 @@ export default (state, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
+                token: JSON.parse(localStorage.getItem('token')),
                 user: action.payload,
                 isAuthenticated: true,
                 loading: false
@@ -25,8 +26,11 @@ export default (state, action) => {
         case AUTH_USER_FAIL:
         case LOGIN_FAIL:
         case REGISTER_FAIL:
+            localStorage.removeItem('token');
+            console.log('some kind of failure');
             return {
                 ...state,
+                token: null,
                 isAuthenticated: false,
                 error: action.payload
             }
@@ -43,7 +47,7 @@ export default (state, action) => {
                 error: action.payload
             }
         case LOAD_USER:
-
+            console.log("user loaded?");
             return {
                 ...state,
                 isAuthenticated: true,
