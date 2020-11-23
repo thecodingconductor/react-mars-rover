@@ -13,7 +13,8 @@ import {
     LOGOUT_USER,
     LOGIN_USER,
     LOAD_USER,
-    AUTH_USER
+    AUTH_USER,
+    ADD_TO_FAVORITES
 } from '../types';
 
 const AuthState = props => {
@@ -23,7 +24,6 @@ const AuthState = props => {
         isAuthenticated: null,
         user: null,
         loading: true,
-        favorites: [],
         error: null
     }
 
@@ -37,6 +37,18 @@ const AuthState = props => {
         })
     }
 
+    const addToFavorites = currentImage => {
+
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        currentUser.favorites.push(currentImage);
+        localStorage.setItem('user', JSON.stringify(currentUser));
+
+        dispatch({
+            type: ADD_TO_FAVORITES,
+            payload: currentImage
+        })
+    }
+
     const register = async formData => {
 
         const salt = await bcryptjs.genSalt(10);
@@ -46,6 +58,7 @@ const AuthState = props => {
         formData.id = uuid();
 
         const user = formData;
+        user.favorites = [];
 
         const payload = {
             user: {
@@ -98,6 +111,7 @@ const AuthState = props => {
             favorites: state.favorites,
             loading: state.loading,
             user: state.user,
+            addToFavorites,
             register,
             loadUser,
             login,

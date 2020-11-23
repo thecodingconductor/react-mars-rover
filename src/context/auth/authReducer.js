@@ -3,7 +3,8 @@ import {
     LOGOUT_USER,
     LOGIN_USER,
     AUTH_USER,
-    LOAD_USER
+    LOAD_USER,
+    ADD_TO_FAVORITES
 } from '../types';
 
 export default (state, action) => {
@@ -38,6 +39,15 @@ export default (state, action) => {
         case AUTH_USER:
             return {
                 ...state
+            }
+
+        case ADD_TO_FAVORITES:
+            return {
+                ...state,
+                user: {
+                    ...state,
+                    favorites: [...state.user.favorites, action.payload]
+                }
             }
         default:
             return state;

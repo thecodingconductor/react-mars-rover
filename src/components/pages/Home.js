@@ -7,19 +7,24 @@ const Home = () => {
 
     const imageContext = useContext(ImageContext);
     const authContext = useContext(AuthContext);
-    const { loadUser } = authContext;
+    const { loadUser, addToFavorites, user } = authContext;
     const { currentImage, generatePhoto, loading } = imageContext;
+
 
     useEffect(() => {
         loadUser();
         // eslint-disable-next-line
     }, [])
 
+    const onClick = e => {
+        addToFavorites(currentImage);
+    }
+
     return (
         <div>
             <h1>Home</h1>
             <Button onClick={generatePhoto}>Generate Photo</Button>
-            {currentImage !== null ? <img src={currentImage.img_src} alt="" /> : ''}
+            {currentImage !== null ? <img src={currentImage.img_src} onClick={onClick} style={{ cursor: "pointer" }} /> : ''}
         </div>
     )
 }

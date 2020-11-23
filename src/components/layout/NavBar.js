@@ -20,7 +20,7 @@ const NavBar = () => {
     const authLinks = (
         <Fragment>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
-            <Nav.Link href="/logout">Logout</Nav.Link>
+            <Nav.Link href="/" onClick={logout}>Logout</Nav.Link>
         </Fragment>
     )
 
