@@ -18,15 +18,31 @@ const Home = () => {
         // eslint-disable-next-line
     }, [])
 
-    const onClick = e => {
+    const onClick = () => {
         addToFavorites(currentImage);
+    }
+
+    if (currentImage !== null && !loading) {
+
+        return (
+            <Fragment>
+                <Button onClick={generatePhoto}>Generate Photo</Button>
+                <img src={currentImage.img_src} onClick={onClick} style={{ cursor: "pointer" }} />
+            </Fragment>
+        )
+    } else if (loading) {
+        return (
+            <Fragment>
+                <Spinner />
+            </Fragment>
+        )
     }
 
     return (
         <div>
             <h1>Home</h1>
             <Button onClick={generatePhoto}>Generate Photo</Button>
-            {currentImage !== null ? <img src={currentImage.img_src} onClick={onClick} style={{ cursor: "pointer" }} /> : <Spinner />}
+
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import {
-    GET_IMAGE
+    GET_IMAGE,
+    SET_LOADING
 } from '../types';
 
 export default (state, action) => {
@@ -8,7 +9,14 @@ export default (state, action) => {
         case GET_IMAGE:
             return {
                 ...state,
-                currentImage: action.payload
+                currentImage: action.payload,
+                loading: false
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                currentImage: null,
+                loading: true
             }
         default:
             return state;

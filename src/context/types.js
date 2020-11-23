@@ -11,3 +11,5 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 
 export const GET_IMAGE = 'GET_IMAGE';
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const SET_LOADING = 'SET_LOADING';
+
