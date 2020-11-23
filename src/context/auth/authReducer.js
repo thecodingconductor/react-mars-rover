@@ -1,7 +1,7 @@
 import {
     REGISTER_USER,
     LOGOUT_USER,
-    LOGIN_USER,
+    LOGIN_SUCCESS,
     AUTH_USER,
     LOAD_USER,
     ADD_TO_FAVORITES
@@ -11,13 +11,15 @@ export default (state, action) => {
     switch (action.type) {
 
         case REGISTER_USER:
-
+        case LOGIN_SUCCESS:
             return {
                 ...state,
                 user: action.payload,
                 isAuthenticated: true,
                 loading: false
             }
+
+
         case LOGOUT_USER:
             localStorage.removeItem('token');
             return {

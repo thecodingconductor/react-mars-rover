@@ -58,10 +58,10 @@ const Login = props => {
                         <Form.Control type="password" name="password" value={password} onChange={onChange} />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" value="Register" className="register-button" block>Register</Button>
+                    <Button variant="primary" type="submit" value="Register" className="register-button" block>Login</Button>
                     <Container className="form-info-bottom">
                         <p>Already have an account?</p>
-                        <a href="/login">Log In</a>
+                        <a href="/login">Register</a>
                     </Container>
                 </Form>
             </Container>

@@ -11,7 +11,7 @@ import { uuid } from 'uuidv4';
 import {
     REGISTER_USER,
     LOGOUT_USER,
-    LOGIN_USER,
+    LOGIN_SUCCESS,
     LOAD_USER,
     AUTH_USER,
     ADD_TO_FAVORITES
@@ -88,7 +88,46 @@ const AuthState = props => {
     }
 
     const login = async formData => {
-        console.log('login');
+
+        const loginUser = formData;
+
+        if (localStorage.getItem('user')) {
+            const storageUser = JSON.parse(localStorage.getItem('user'));
+            const isMatch = await bcryptjs.compare(loginUser.password, storageUser.password);
+
+            if (!isMatch) {
+                console.log('passwords dont match');
+            }
+
+            const payload = {
+                user: {
+                    id: storageUser.id
+                }
+            }
+
+            jwt.sign(
+                payload,
+                jwtSecret,
+                {
+                    expiresIn: 3600,
+                },
+                (err, token) => {
+                    if (err) throw err;
+                    localStorage.setItem('token', JSON.stringify(token))
+                }
+            );
+
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: storageUser
+            })
+
+            loadUser();
+
+        } else {
+            //TODO - ALERT TO CREATE USER FIRST
+            console.log('create user');
+        }
     }
 
     const logout = () => {
