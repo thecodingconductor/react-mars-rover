@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import FavoritesItem from '../favorites/FavoritesItem';
 import Spinner from '../layout/Spinner';
+import { uuid } from 'uuidv4';
 
 
 const Favorites = () => {
@@ -20,7 +21,7 @@ const Favorites = () => {
         <div>
             <h1>Favorites Page</h1>
             {user === null ? <Spinner /> : user.favorites.map(favorite => (
-                <FavoritesItem favorite={favorite} />
+                <FavoritesItem key={uuid()} favorite={favorite} />
             ))}
         </div>
     )

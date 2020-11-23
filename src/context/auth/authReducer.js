@@ -2,7 +2,9 @@ import {
     REGISTER_USER,
     LOGOUT_USER,
     LOGIN_SUCCESS,
+    LOGIN_FAIL,
     AUTH_USER,
+    AUTH_USER_FAIL,
     LOAD_USER,
     ADD_TO_FAVORITES
 } from '../types';
@@ -17,6 +19,12 @@ export default (state, action) => {
                 user: action.payload,
                 isAuthenticated: true,
                 loading: false
+            }
+        case AUTH_USER_FAIL:
+        case LOGIN_FAIL:
+            return {
+                ...state,
+                isAuthenticated: false
             }
 
 

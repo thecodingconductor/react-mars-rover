@@ -13,8 +13,10 @@ import {
     LOGOUT_USER,
     LOGIN_SUCCESS,
     LOAD_USER,
-    AUTH_USER,
-    ADD_TO_FAVORITES
+    LOGIN_FAIL,
+    // AUTH_USER,
+    ADD_TO_FAVORITES,
+    AUTH_USER_FAIL
 } from '../types';
 
 const AuthState = props => {
@@ -30,6 +32,15 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     const loadUser = () => {
+        console.log(localStorage.getItem('token'));
+        if (!localStorage.getItem('token')) {
+            console.log('no token');
+            dispatch({
+                type: AUTH_USER_FAIL
+            })
+            return;
+        }
+
         const currentUser = JSON.parse(localStorage.getItem('user'));
         dispatch({
             type: LOAD_USER,
@@ -96,7 +107,12 @@ const AuthState = props => {
             const isMatch = await bcryptjs.compare(loginUser.password, storageUser.password);
 
             if (!isMatch) {
-                console.log('passwords dont match');
+                console.log('passwords dont match')
+                dispatch({
+                    type: LOGIN_FAIL,
+                    payload: 'error'
+                });
+                return;
             }
 
             const payload = {
@@ -105,24 +121,30 @@ const AuthState = props => {
                 }
             }
 
-            jwt.sign(
-                payload,
-                jwtSecret,
-                {
-                    expiresIn: 3600,
-                },
-                (err, token) => {
-                    if (err) throw err;
-                    localStorage.setItem('token', JSON.stringify(token))
-                }
-            );
+            try {
+                await jwt.sign(
+                    payload,
+                    jwtSecret,
+                    {
+                        expiresIn: 3600,
+                    },
+                    (err, token) => {
+                        if (err) throw err;
+                        localStorage.setItem('token', JSON.stringify(token))
 
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: storageUser
-            })
+                        dispatch({
+                            type: LOGIN_SUCCESS,
+                            payload: storageUser
+                        })
 
-            loadUser();
+                        loadUser();
+                    }
+                );
+            } catch (error) {
+                console.error(error.message);
+            }
+
+
 
         } else {
             //TODO - ALERT TO CREATE USER FIRST
