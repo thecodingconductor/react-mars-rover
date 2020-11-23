@@ -10,13 +10,15 @@ import { uuid } from 'uuidv4';
 
 import {
     REGISTER_USER,
+    REGISTER_FAIL,
     LOGOUT_USER,
     LOGIN_SUCCESS,
     LOAD_USER,
     LOGIN_FAIL,
     // AUTH_USER,
     ADD_TO_FAVORITES,
-    AUTH_USER_FAIL
+    AUTH_USER_FAIL,
+    CLEAR_ERRORS
 } from '../types';
 
 const AuthState = props => {
@@ -25,7 +27,7 @@ const AuthState = props => {
         token: localStorage.getItem('token'),
         isAuthenticated: null,
         user: null,
-        loading: true,
+        loading: false,
         error: null
     }
 
@@ -34,7 +36,7 @@ const AuthState = props => {
     const loadUser = () => {
         console.log(localStorage.getItem('token'));
         if (!localStorage.getItem('token')) {
-            console.log('no token');
+
             dispatch({
                 type: AUTH_USER_FAIL
             })
@@ -61,6 +63,8 @@ const AuthState = props => {
     }
 
     const register = async formData => {
+
+
 
         const salt = await bcryptjs.genSalt(10);
 
@@ -106,13 +110,14 @@ const AuthState = props => {
             const storageUser = JSON.parse(localStorage.getItem('user'));
             const isMatch = await bcryptjs.compare(loginUser.password, storageUser.password);
 
-            if (!isMatch) {
-                console.log('passwords dont match')
+            if (!isMatch || loginUser.email !== storageUser.email) {
+
                 dispatch({
                     type: LOGIN_FAIL,
-                    payload: 'error'
+                    payload: "Invalid Credentials"
                 });
                 return;
+
             }
 
             const payload = {
@@ -157,7 +162,14 @@ const AuthState = props => {
     }
 
     const clearErrors = () => {
-        console.log('clear errors');
+        dispatch({ type: CLEAR_ERRORS })
+    }
+
+    const checkEmail = (input) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(input.value.trim())) {
+
+        }
     }
 
 
@@ -172,6 +184,7 @@ const AuthState = props => {
             favorites: state.favorites,
             loading: state.loading,
             user: state.user,
+            error: state.error,
             addToFavorites,
             register,
             loadUser,

@@ -1,12 +1,14 @@
 import {
     REGISTER_USER,
+    REGISTER_FAIL,
     LOGOUT_USER,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     AUTH_USER,
     AUTH_USER_FAIL,
     LOAD_USER,
-    ADD_TO_FAVORITES
+    ADD_TO_FAVORITES,
+    CLEAR_ERRORS
 } from '../types';
 
 export default (state, action) => {
@@ -22,9 +24,11 @@ export default (state, action) => {
             }
         case AUTH_USER_FAIL:
         case LOGIN_FAIL:
+        case REGISTER_FAIL:
             return {
                 ...state,
-                isAuthenticated: false
+                isAuthenticated: false,
+                error: action.payload
             }
 
 
@@ -58,6 +62,12 @@ export default (state, action) => {
                     ...state,
                     favorites: [...state.user.favorites, action.payload]
                 }
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
             }
         default:
             return state;

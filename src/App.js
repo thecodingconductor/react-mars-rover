@@ -11,19 +11,19 @@ import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import ImageState from './context/image/ImageState';
 import FavoritesState from './context/favorites/FavoritesState';
-
+import Alerts from './components/layout/Alerts';
 
 const App = () => {
   return (
-    <AlertState>
-
-
+    <AuthState>
       <ImageState>
-        <AuthState>
+        <AlertState>
           <Router>
             <div className="App">
               <NavBar />
+
               <h1>Mars Rover</h1>
+              <Alerts />
               <Switch>
                 <Route exact path="/" component={Home}></Route>
                 <Route exact path="/register" component={Register}></Route>
@@ -32,9 +32,9 @@ const App = () => {
               </Switch>
             </div>
           </Router>
-        </AuthState>
+        </AlertState >
       </ImageState>
-    </AlertState>
+    </AuthState>
 
 
   );
