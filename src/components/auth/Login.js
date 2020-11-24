@@ -50,7 +50,7 @@ const Login = props => {
     return (
         <Fragment>
             <Container className="login-form-container">
-                <Form onSubmit={onSubmit}>
+                <Form onSubmit={onSubmit} noValidate>
 
                     <Form.Group>
                         <Form.Label htmlFor="email">Email</Form.Label>

@@ -27,7 +27,7 @@ export default (state, action) => {
         case LOGIN_FAIL:
         case REGISTER_FAIL:
             localStorage.removeItem('token');
-            console.log('some kind of failure');
+
             return {
                 ...state,
                 token: null,
@@ -47,7 +47,7 @@ export default (state, action) => {
                 error: action.payload
             }
         case LOAD_USER:
-            console.log("user loaded?");
+
             return {
                 ...state,
                 isAuthenticated: true,

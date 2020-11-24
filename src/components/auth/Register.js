@@ -41,14 +41,14 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log(email);
+        // console.log(email);
 
         if (name === '' || email === '' || password === '') {
             setAlert('Please enter all fields', 'danger');
         } else if (password !== password2) {
             setAlert('Passwords do not match', 'danger');
         } else if (!checkEmail(email)) {
-            console.log('error email');
+
             setAlert('Enter valid email address', 'danger');
         } else {
             register({

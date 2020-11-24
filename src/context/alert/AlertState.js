@@ -27,6 +27,8 @@ const AlertState = props => {
 
     }
 
+
+
     return (
         <AlertContext.Provider value={{
             alerts: state,

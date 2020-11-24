@@ -2,12 +2,16 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import ImageContext from '../../context/image/imageContext';
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
 import Spinner from '../layout/Spinner';
+
 
 const Home = () => {
 
+    const alertContext = useContext(AlertContext);
     const imageContext = useContext(ImageContext);
     const authContext = useContext(AuthContext);
+    const { setAlert } = alertContext;
     const { loadUser, addToFavorites, user } = authContext;
     const { currentImage, generatePhoto, loading } = imageContext;
 
@@ -20,6 +24,8 @@ const Home = () => {
 
     const onClick = () => {
         addToFavorites(currentImage);
+        setAlert('Added to Favorites', 'success');
+
     }
 
     if (currentImage !== null && !loading) {

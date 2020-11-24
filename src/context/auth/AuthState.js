@@ -34,7 +34,7 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     const loadUser = () => {
-        console.log(localStorage.getItem('token'));
+        // console.log(localStorage.getItem('token'));
         if (!localStorage.getItem('token')) {
 
             console.log('there is no token');
@@ -56,6 +56,8 @@ const AuthState = props => {
         const currentUser = JSON.parse(localStorage.getItem('user'));
         currentUser.favorites.push(currentImage);
         localStorage.setItem('user', JSON.stringify(currentUser));
+
+
 
         dispatch({
             type: ADD_TO_FAVORITES,
@@ -167,18 +169,18 @@ const AuthState = props => {
         dispatch({ type: CLEAR_ERRORS })
     }
 
-    // const checkEmail = (input) => {
-    //     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //     if (!re.test(input.trim())) {
-    //         dispatch({
-    //             type: REGISTER_FAIL,
-    //             error: "Invalid Email"
-    //         });
-    //         return false;
-    //     } else {
-    //         return true
-    //     }
-    // }
+    const checkEmail = (input) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(input.trim())) {
+            dispatch({
+                type: REGISTER_FAIL,
+                error: "Invalid Email"
+            });
+            return false;
+        } else {
+            return true
+        }
+    }
 
 
 
@@ -200,7 +202,7 @@ const AuthState = props => {
             login,
             logout,
             clearErrors,
-            // checkEmail
+            checkEmail
         }}>
             {props.children}
         </AuthContext.Provider>
