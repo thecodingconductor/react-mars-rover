@@ -27,7 +27,10 @@ const Home = () => {
         return (
             <Fragment>
                 <Button onClick={generatePhoto}>Generate Photo</Button>
-                <img src={currentImage.img_src} onClick={onClick} style={{ cursor: "pointer" }} />
+                <div className="main-image-container">
+                    <img src={currentImage.img_src} onClick={onClick} style={{ cursor: "pointer" }} className="main-image" />
+                </div>
+
             </Fragment>
         )
     } else if (loading) {
@@ -42,7 +45,6 @@ const Home = () => {
         <div>
             <h1>Home</h1>
             <Button onClick={generatePhoto}>Generate Photo</Button>
-
         </div>
     )
 }

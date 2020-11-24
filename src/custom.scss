@@ -46,3 +46,30 @@ $screen-xl-min: 1200px;
 body {
     
 }
+
+.main-image-container {
+    height: 50%;
+    width: 90%;
+    margin: 3rem auto;
+
+    .main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+}
+
+// Favorites Page
+.favorites-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 2rem;
+
+    .favorites-image {
+        max-height: 400px;
+        width: 100%;
+        object-fit: contain;
+    }
+
+}

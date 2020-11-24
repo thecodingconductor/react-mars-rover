@@ -3,6 +3,7 @@ import AuthContext from '../../context/auth/authContext';
 import FavoritesItem from '../favorites/FavoritesItem';
 import Spinner from '../layout/Spinner';
 import { uuid } from 'uuidv4';
+import { Container } from 'react-bootstrap';
 
 
 const Favorites = () => {
@@ -21,9 +22,12 @@ const Favorites = () => {
     return (
         <div>
             <h1>Favorites Page</h1>
-            {user === null ? <Spinner /> : user.favorites.map(favorite => (
-                <FavoritesItem key={uuid()} favorite={favorite} />
-            ))}
+            <Container className="favorites-container">
+                {user === null ? <Spinner /> : user.favorites.map(favorite => (
+                    <FavoritesItem key={uuid()} favorite={favorite} />
+                ))}
+            </Container>
+
         </div>
     )
 }
