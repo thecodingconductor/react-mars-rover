@@ -34,7 +34,8 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     const loadUser = () => {
-        // console.log(localStorage.getItem('token'));
+        console.log('from loadUser');
+        console.log(localStorage.getItem('token'));
         if (!localStorage.getItem('token')) {
 
             console.log('there is no token');
@@ -92,17 +93,25 @@ const AuthState = props => {
             },
             (err, token) => {
                 if (err) throw err;
+
                 localStorage.setItem('token', JSON.stringify(token))
+                console.log(`which comes first? setting token... > ${localStorage.getItem('token')}`);
                 localStorage.setItem('user', JSON.stringify(user));
+
+                dispatch({
+                    type: REGISTER_USER,
+                    payload: user
+                })
+
+                // loadUser();
             }
         );
 
 
 
-        dispatch({
-            type: REGISTER_USER,
-            payload: user
-        })
+
+
+
     }
 
     const login = async formData => {

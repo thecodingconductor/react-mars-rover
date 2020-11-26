@@ -16,12 +16,22 @@ export default (state, action) => {
 
         case REGISTER_USER:
         case LOGIN_SUCCESS:
+            console.log('register user or login success');
             return {
                 ...state,
                 token: JSON.parse(localStorage.getItem('token')),
                 user: action.payload,
                 isAuthenticated: true,
                 loading: false
+            }
+        case LOAD_USER:
+
+            return {
+                ...state,
+                isAuthenticated: true,
+                token: JSON.parse(localStorage.getItem('token')),
+                loading: false,
+                user: JSON.parse(localStorage.getItem('user'))
             }
         case AUTH_USER_FAIL:
         case LOGIN_FAIL:
@@ -46,14 +56,7 @@ export default (state, action) => {
                 user: null,
                 error: action.payload
             }
-        case LOAD_USER:
 
-            return {
-                ...state,
-                isAuthenticated: true,
-                loading: false,
-                user: JSON.parse(localStorage.getItem('user'))
-            }
         case AUTH_USER:
             return {
                 ...state
