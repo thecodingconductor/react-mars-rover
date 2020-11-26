@@ -63,7 +63,7 @@ const Login = props => {
 
                     <Button variant="primary" type="submit" value="Register" className="register-button" block>Login</Button>
                     <Container className="form-info-bottom">
-                        <p>Already have an account?</p>
+                        <p>Need to make an account?</p>
                         <a href="/register">Register</a>
                     </Container>
                 </Form>

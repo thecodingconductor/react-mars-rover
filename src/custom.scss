@@ -52,6 +52,11 @@ body {
     width: 90%;
     margin: 3rem auto;
 
+    @include lg {
+        height: 40rem;
+        max-width: 85%;
+    }
+
     .main-image {
         width: 100%;
         height: 100%;
