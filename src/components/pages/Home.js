@@ -36,7 +36,7 @@ const Home = () => {
 
                 <div className="main-content-container d-flex flex-column align-items-center justify-content-center">
                     <div className="main-image-container">
-                        <i className="far fa-heart fa-3x add-to-favorites-icon" onClick={onClick} style={{ cursor: "pointer" }}></i>
+                        <i className="far fa-heart fa-2x add-to-favorites-icon" onClick={onClick} style={{ cursor: "pointer" }}></i>
                         <img src={currentImage.img_src} className="main-image" />
                     </div>
                     <Button onClick={generatePhoto} className="generate-photo-button">Generate Photo</Button>

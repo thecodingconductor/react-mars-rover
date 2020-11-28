@@ -61,7 +61,13 @@ body {
     
     margin: 0;
     background-color: #202840;
+    color: #fff;
+    font-family: $oswald;
+    font-weight: 400;
 }
+
+
+// STARS ANIMATION
 
 .stars {
     position: fixed;
@@ -111,7 +117,7 @@ body {
     }
   }
   
-
+// Nav Bar
 .site-title-main {
     font-family: $oswald;
     font-weight: 600;
@@ -143,9 +149,38 @@ body {
     }
 }
 
+// Auth Pages
+
+.form-label {
+    color: #fff;
+    font-family: $oswald;
+}
+
+.form-control, .form-control:focus, .form-control:active {
+    background: transparent;
+    color: #fff;
+    font-family: $oswald;
+}
+
+.register-button {
+    font-family: $oswald;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+} 
+
+.form-info-bottom {
+    * {
+        color: #fff;
+
+    }
+}
+
+// Home Page
+
 .main-content-container {
 
-   height: 100%; 
+   height: 85%; 
 
     .generate-photo-message {
         color: #fff;
@@ -158,6 +193,10 @@ body {
         width: 90%;
         margin: 3rem auto;
         position: relative;
+
+        @include md {
+            width: 85%;
+        }
     
         @include lg {
             height: 40rem;
@@ -175,7 +214,7 @@ body {
         .main-image {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: fill;
         }
     
     }
