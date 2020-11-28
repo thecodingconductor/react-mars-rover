@@ -162,11 +162,14 @@ body {
     font-family: $oswald;
 }
 
-.register-button {
+.register-button, .register-button:active, .register-button:focus, .register-button:hover {
     font-family: $oswald;
     color: #fff;
     background-color: transparent;
     border: 2px solid #fff;
+    margin-top: 3rem;
+    border-radius: 0px;
+    outline: none;
 } 
 
 .form-info-bottom {
@@ -183,9 +186,11 @@ body {
    height: 85%; 
 
     .generate-photo-message {
+        width: 85%;
         color: #fff;
         font-family: $oswald;
         text-transform: uppercase;
+        margin-bottom: 3rem;
     }
     
     .main-image-container {
@@ -200,7 +205,7 @@ body {
     
         @include lg {
             height: 40rem;
-            max-width: 85%;
+            width: 50%;
         }
 
         .add-to-favorites-icon {
@@ -244,6 +249,7 @@ body {
             right: 5%;
             color: #fff;
             z-index: 30;
+            cursor: pointer;
         }
     }
 
@@ -251,6 +257,11 @@ body {
         max-height: 400px;
         width: 100%;
         object-fit: contain;
+
+        @include md {
+            height: 100%;
+            object-fit: fill;
+        }
     }
 
 }

@@ -28,7 +28,7 @@ const Favorites = () => {
                     <div key={uuid()} className="favorite-item">
 
                         <FavoritesItem favorite={favorite} />
-                        <i className="fas fa-trash" onClick={() => deleteFavorite(favorite)}></i>
+                        <i className="fas fa-trash delete-favorite" onClick={() => deleteFavorite(favorite)}></i>
                     </div>
 
                 ))}
