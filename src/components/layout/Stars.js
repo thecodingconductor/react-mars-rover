@@ -6,6 +6,12 @@ const Stars = () => {
     const STAR_DATA = generateStarData();
 
 
+    useEffect(() => {
+        const starGroup = document.getElementById('starGroup');
+        createNightSky({ container: starGroup, data: STAR_DATA });
+        // eslint-disable-next-line
+    }, [])
+
     const createStar = ({ x, y }, index, debug) => {
         const starInstance = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         starInstance.classList.add('star-instance');
@@ -31,18 +37,17 @@ const Stars = () => {
     }
 
     const createNightSky = ({ container, debug, starReference }) => {
+
+        console.log(container);
         STAR_DATA.forEach((data, index) => {
             const star = createStar(data, index, debug);
             container.appendChild(star);
         })
     };
 
-    const starGroup = document.getElementById('starGroup');
 
-    useEffect(() => {
-        createNightSky({ container: starGroup, data: STAR_DATA });
-        // eslint-disable-next-line
-    }, [])
+
+
 
 
 
