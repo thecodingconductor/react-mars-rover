@@ -10,5 +10,5 @@ An insight they had about Mars was also particularly fascinating. Scientists bel
 
 As I was looking for ideas of a good project, I went to the NASA website, and discovered they had lots of great API’s, one of them being an API for seeing photos taken by Mars Rovers. 
 
-![MarsRover](./src/mars-favorites.png)
+![MarsRover](./src/mars-faves.png)
 
