@@ -10,21 +10,27 @@ const Favorites = () => {
 
     const authContext = useContext(AuthContext);
 
-    const { loadUser, user } = authContext;
+    const { loadUser, user, deleteFavorite } = authContext;
     // const { favorites } = user;
 
     useEffect(() => {
-        // console.log('favorites page fail');
+
         loadUser();
         // eslint-disable-next-line
     }, [])
 
+
     return (
         <div>
-            <h1>Favorites Page</h1>
+
             <Container className="favorites-container">
                 {user === null ? <Spinner /> : user.favorites.map(favorite => (
-                    <FavoritesItem key={uuid()} favorite={favorite} />
+                    <div key={uuid()} className="favorite-item">
+
+                        <FavoritesItem favorite={favorite} />
+                        <i className="fas fa-trash" onClick={() => deleteFavorite(favorite)}></i>
+                    </div>
+
                 ))}
             </Container>
 

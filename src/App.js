@@ -12,7 +12,6 @@ import NavState from './context/nav/NavState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import ImageState from './context/image/ImageState';
-import FavoritesState from './context/favorites/FavoritesState';
 import Alerts from './components/layout/Alerts';
 
 const App = () => {
@@ -24,7 +23,6 @@ const App = () => {
             <div className="App">
               <Stars />
               <NavBar />
-              <h1>Mars Rover</h1>
               <Alerts />
               <Switch>
                 <Route exact path="/" component={Home}></Route>

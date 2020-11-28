@@ -26,31 +26,42 @@ const Home = () => {
         addToFavorites(currentImage);
         setAlert('Added to Favorites', 'success');
 
+
     }
 
     if (currentImage !== null && !loading) {
 
         return (
             <Fragment>
-                <Button onClick={generatePhoto}>Generate Photo</Button>
-                <div className="main-image-container">
-                    <img src={currentImage.img_src} onClick={onClick} style={{ cursor: "pointer" }} className="main-image" />
+
+                <div className="main-content-container d-flex flex-column align-items-center justify-content-center">
+                    <div className="main-image-container">
+                        <i className="far fa-heart fa-3x add-to-favorites-icon" onClick={onClick} style={{ cursor: "pointer" }}></i>
+                        <img src={currentImage.img_src} className="main-image" />
+                    </div>
+                    <Button onClick={generatePhoto} className="generate-photo-button">Generate Photo</Button>
                 </div>
+
+
 
             </Fragment>
         )
     } else if (loading) {
         return (
-            <Fragment>
+
+            <div className="main-content-container d-flex flex-column align-items-center justify-content-center">
                 <Spinner />
-            </Fragment>
+            </div>
+
+
+
         )
     }
 
     return (
-        <div>
-            <h1>Home</h1>
-            <Button onClick={generatePhoto}>Generate Photo</Button>
+        <div className="main-content-container d-flex flex-column align-items-center justify-content-center">
+            <h1 className="generate-photo-message">View photos from the Mars Rovers</h1>
+            <Button onClick={generatePhoto} className="generate-photo-button">Generate Photo</Button>
         </div>
     )
 }

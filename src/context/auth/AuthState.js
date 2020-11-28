@@ -17,6 +17,7 @@ import {
     LOGIN_FAIL,
     // AUTH_USER,
     ADD_TO_FAVORITES,
+    DELETE_FAVORITE,
     AUTH_USER_FAIL,
     CLEAR_ERRORS
 } from '../types';
@@ -34,8 +35,7 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     const loadUser = () => {
-        console.log('from loadUser');
-        console.log(localStorage.getItem('token'));
+
         if (!localStorage.getItem('token')) {
 
             console.log('there is no token');
@@ -63,6 +63,27 @@ const AuthState = props => {
         dispatch({
             type: ADD_TO_FAVORITES,
             payload: currentImage
+        })
+    }
+
+    const deleteFavorite = favorite => {
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+
+        // find matching item
+        const item = currentUser.favorites.map(storageFave => {
+            return storageFave.id
+        }).indexOf(favorite.id);
+
+        // remove from array
+        currentUser.favorites.splice(item, 1);
+
+        //commit change to local storage
+        localStorage.setItem('user', JSON.stringify(currentUser));
+
+        //send to reducer
+        dispatch({
+            type: DELETE_FAVORITE,
+            payload: favorite
         })
     }
 
@@ -211,7 +232,8 @@ const AuthState = props => {
             login,
             logout,
             clearErrors,
-            checkEmail
+            checkEmail,
+            deleteFavorite
         }}>
             {props.children}
         </AuthContext.Provider>

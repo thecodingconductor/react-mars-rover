@@ -1,6 +1,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
 
 
 // Small tablets and large smartphones (landscape view)
@@ -43,7 +44,21 @@ $screen-xl-min: 1200px;
     }
 }
 
+$oswald: 'Oswald', sans-serif;
+#root {
+    height: 100%;
+}
+
+.App {
+    height: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+
 body {
+    
     margin: 0;
     background-color: #202840;
 }
@@ -54,12 +69,11 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: -10;
   }
   
-  body {
-    margin: 0;
-    background-color: #202840;
-  }
+  
+
   
   #btnDebug {
     position: fixed;
@@ -97,29 +111,102 @@ body {
     }
   }
   
-.main-image-container {
-    height: 50%;
-    width: 90%;
-    margin: 3rem auto;
 
-    @include lg {
-        height: 40rem;
-        max-width: 85%;
+.site-title-main {
+    font-family: $oswald;
+    font-weight: 600;
+}  
+
+.main-nav-bar-container {
+    justify-content: center;
+
+    .nav-bar-left {
+        margin-right: 10px;
+        display: none !important;
+        
+        @include lg {
+            margin-right: auto;
+            visibility: hidden;
+            display: flex !important;
+        }
+    
     }
 
-    .main-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
+    .nav-bar-right {
+        margin-left: auto;
 
+        a {
+            font-family: $oswald;
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
 }
+
+.main-content-container {
+
+   height: 100%; 
+
+    .generate-photo-message {
+        color: #fff;
+        font-family: $oswald;
+        text-transform: uppercase;
+    }
+    
+    .main-image-container {
+        height: 50%;
+        width: 90%;
+        margin: 3rem auto;
+        position: relative;
+    
+        @include lg {
+            height: 40rem;
+            max-width: 85%;
+        }
+
+        .add-to-favorites-icon {
+            position: absolute;
+            color: #fff;
+            top: 10%;
+            right: 5%;
+            z-index: 2;
+        }
+    
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    
+    }
+    
+    .generate-photo-button {
+        font-family: $oswald;
+        color: #fff;
+        background-color: transparent;
+        border: 2px solid #fff;
+    }
+    
+}
+
 
 // Favorites Page
 .favorites-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 2rem;
+
+    .favorite-item {
+        position: relative;
+        
+        i {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            color: #fff;
+            z-index: 30;
+        }
+    }
 
     .favorites-image {
         max-height: 400px;

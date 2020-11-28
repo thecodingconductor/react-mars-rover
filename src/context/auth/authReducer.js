@@ -8,7 +8,8 @@ import {
     AUTH_USER_FAIL,
     LOAD_USER,
     ADD_TO_FAVORITES,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    DELETE_FAVORITE
 } from '../types';
 
 export default (state, action) => {
@@ -69,6 +70,17 @@ export default (state, action) => {
                     ...state,
                     favorites: [...state.user.favorites, action.payload]
                 }
+            }
+
+        case DELETE_FAVORITE:
+
+            return {
+                ...state,
+                user: {
+                    ...state,
+                    favorites: state.user.favorites.filter(favorite => favorite.id !== action.payload.id)
+                }
+
             }
 
         case CLEAR_ERRORS:

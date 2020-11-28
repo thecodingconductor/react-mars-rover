@@ -26,10 +26,19 @@ const NavBar = () => {
 
     return (
         <Fragment>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/">Mars Rover Photos</Navbar.Brand>
+            <Navbar variant="dark" className="main-nav-bar-container">
+                <div className="nav-bar-left d-flex align-items-center">
+                    {isAuthenticated ? authLinks : guestLinks}
+                </div>
+                <div className="nav-bar-center">
+                    <Navbar.Brand href="/" className="site-title-main">Mars Rover Photos</Navbar.Brand>
+                </div>
+                <div className="nav-bar-right d-flex align-items-center">
+                    {isAuthenticated ? authLinks : guestLinks}
+                </div>
 
-                {isAuthenticated ? authLinks : guestLinks}
+
+
             </Navbar>
         </Fragment>
     )
