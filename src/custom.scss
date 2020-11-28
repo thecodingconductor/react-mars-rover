@@ -151,6 +151,12 @@ body {
 
 // Auth Pages
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .form-label {
     color: #fff;
     font-family: $oswald;
