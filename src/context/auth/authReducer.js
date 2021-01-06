@@ -17,7 +17,7 @@ export default (state, action) => {
 
         case REGISTER_USER:
         case LOGIN_SUCCESS:
-            console.log('register user or login success');
+
             return {
                 ...state,
                 token: JSON.parse(localStorage.getItem('token')),

@@ -38,7 +38,7 @@ const AuthState = props => {
 
         if (!localStorage.getItem('token')) {
 
-            console.log('there is no token');
+
             dispatch({
                 type: AUTH_USER_FAIL
             })
@@ -116,7 +116,7 @@ const AuthState = props => {
                 if (err) throw err;
 
                 localStorage.setItem('token', JSON.stringify(token))
-                console.log(`which comes first? setting token... > ${localStorage.getItem('token')}`);
+
                 localStorage.setItem('user', JSON.stringify(user));
 
                 dispatch({
@@ -187,7 +187,10 @@ const AuthState = props => {
 
         } else {
             //TODO - ALERT TO CREATE USER FIRST
-            console.log('create user');
+            dispatch({
+                type: LOGIN_FAIL,
+                payload: "Please create a user"
+            });
         }
     }
 

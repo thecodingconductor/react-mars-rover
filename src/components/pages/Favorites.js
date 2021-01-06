@@ -1,8 +1,9 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import FavoritesItem from '../favorites/FavoritesItem';
 import Spinner from '../layout/Spinner';
-import { uuid } from 'uuidv4';
+// import { uuid } from 'uuidv4';
+// import { v4 } from 'uuid';
 import { Container } from 'react-bootstrap';
 
 
@@ -11,7 +12,7 @@ const Favorites = () => {
     const authContext = useContext(AuthContext);
 
     const { loadUser, user, deleteFavorite } = authContext;
-    // const { favorites } = user;
+
 
     useEffect(() => {
 
@@ -24,8 +25,8 @@ const Favorites = () => {
         <div>
 
             <Container className="favorites-container">
-                {user === null ? <Spinner /> : user.favorites.map(favorite => (
-                    <div key={uuid()} className="favorite-item">
+                {user === null ? <Spinner /> : user.favorites.map((favorite, index) => (
+                    <div key={index} className="favorite-item">
 
                         <FavoritesItem favorite={favorite} />
                         <i className="fas fa-trash delete-favorite" onClick={() => deleteFavorite(favorite)}></i>

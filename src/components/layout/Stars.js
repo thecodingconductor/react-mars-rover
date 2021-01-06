@@ -38,7 +38,7 @@ const Stars = () => {
 
     const createNightSky = ({ container, debug, starReference }) => {
 
-        console.log(container);
+
         STAR_DATA.forEach((data, index) => {
             const star = createStar(data, index, debug);
             container.appendChild(star);

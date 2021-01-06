@@ -18,9 +18,15 @@ const Login = props => {
             props.history.push('/');
         }
 
-        if (error === "Invalid Credentials") {
-            setAlert(error, 'danger');
-            clearErrors();
+        // if (error === "Invalid Credentials") {
+        //     setAlert(error, 'danger');
+        //     clearErrors();
+        // }
+
+
+        if (error) {
+            setAlert(error, 'danger')
+            clearErrors()
         }
         // eslint-disable-next-line
     }, [error, isAuthenticated, props.history]);
