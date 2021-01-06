@@ -8,7 +8,6 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import NavBar from './components/layout/NavBar';
 import Stars from './components/layout/Stars';
-import NavState from './context/nav/NavState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import ImageState from './context/image/ImageState';

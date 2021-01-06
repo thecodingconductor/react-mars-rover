@@ -25,8 +25,6 @@ const Home = () => {
     const onClick = () => {
         addToFavorites(currentImage);
         setAlert('Added to Favorites', 'success');
-
-
     }
 
     if (currentImage !== null && !loading) {
@@ -38,7 +36,7 @@ const Home = () => {
                     <div className="main-image-container">
                         {user && <i className="far fa-heart fa-2x add-to-favorites-icon" onClick={onClick} style={{ cursor: "pointer" }}></i>}
 
-                        <img src={currentImage.img_src} className="main-image" />
+                        <img src={currentImage.img_src} className="main-image" alt="Mars Landscape" />
                     </div>
                     <Button onClick={generatePhoto} className="generate-photo-button">Generate Photo</Button>
                 </div>

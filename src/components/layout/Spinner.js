@@ -4,7 +4,7 @@ import spinner from './6.gif';
 const Spinner = () => {
     return (
         <Fragment>
-            <img src={spinner}></img>
+            <img src={spinner} alt=""></img>
         </Fragment>
     )
 }

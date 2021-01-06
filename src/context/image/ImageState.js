@@ -17,7 +17,7 @@ const ImageState = props => {
     const [state, dispatch] = useReducer(imageReducer, initialState);
 
     const rovers = ['curiosity', 'opportunity', 'spirit'];
-    const cameras = ['FHAZ', 'RHAZ', 'MAST', 'CHEMCAM', 'MAHLI', 'MARDI', 'NAVCAM', 'PANCAM', 'MINITES'];
+
 
     const generateRandomSol = (roverName) => {
         if (roverName === 'curiosity') {
@@ -40,6 +40,13 @@ const ImageState = props => {
                 generatePhoto();
             } else {
                 let item = res.data.photos[Math.floor(Math.random() * (res.data.photos.length - 0) + 0)];
+
+
+                item.img_src = item.img_src.split(':');
+                item.img_src[0] = item.img_src[0] + 's';
+                item.img_src = item.img_src.join(':')
+
+
                 dispatch({
                     type: GET_IMAGE,
                     payload: item

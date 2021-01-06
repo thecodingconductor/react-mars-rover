@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import FavoritesItem from '../favorites/FavoritesItem';
 import Spinner from '../layout/Spinner';
-// import { uuid } from 'uuidv4';
-// import { v4 } from 'uuid';
+
 import { Container } from 'react-bootstrap';
 
 
