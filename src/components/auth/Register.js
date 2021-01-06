@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
-import { Container, Form, Button } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const Register = props => {
 

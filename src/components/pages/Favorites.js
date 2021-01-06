@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import FavoritesItem from '../favorites/FavoritesItem';
 import Spinner from '../layout/Spinner';
-
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 
 
 const Favorites = () => {

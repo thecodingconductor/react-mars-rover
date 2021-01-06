@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
-import { Nav, Navbar } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 
 const NavBar = () => {
