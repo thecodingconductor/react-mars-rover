@@ -4,7 +4,7 @@ import authReducer from './authReducer';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import jwtSecret from '../../config/secret';
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid'
 
 
 
@@ -95,7 +95,8 @@ const AuthState = props => {
 
         formData.password = await bcryptjs.hash(formData.password, salt);
 
-        formData.id = uuid();
+        formData.id = v4();
+
 
         const user = formData;
         user.favorites = [];
@@ -203,6 +204,7 @@ const AuthState = props => {
     }
 
     const checkEmail = (input) => {
+        // eslint-disable-next-line
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(input.trim())) {
             dispatch({
