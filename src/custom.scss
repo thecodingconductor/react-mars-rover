@@ -66,6 +66,22 @@ body {
     font-weight: 400;
 }
 
+.welcome-modal-container {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-modal {
+    color: rgb(32,40,64)
+}
+
 
 // STARS ANIMATION
 
@@ -197,6 +213,7 @@ body {
         font-family: $oswald;
         text-transform: uppercase;
         margin-bottom: 3rem;
+        text-align: center;
     }
     
     .main-image-container {
@@ -219,7 +236,7 @@ body {
             color: #fff;
             top: 10%;
             right: 5%;
-            z-index: 2;
+            z-index: 3;
         }
     
         .main-image {

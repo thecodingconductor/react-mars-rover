@@ -82,7 +82,7 @@ const Register = props => {
                         <Form.Control type="password" name="password2" value={password2} onChange={onChange} />
                     </Form.Group>
                     <Button variant="primary" type="submit" value="Register" className="register-button" block>Register</Button>
-                    <Container className="form-info-bottom">
+                    <Container className="form-info-bottom d-flex flex-column justify-content-center align-items-center p-3">
                         <p>Already have an account?</p>
                         <a href="/login">Log In</a>
                     </Container>

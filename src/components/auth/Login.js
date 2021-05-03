@@ -64,7 +64,7 @@ const Login = props => {
                     </Form.Group>
 
                     <Button variant="primary" type="submit" value="Register" className="register-button" block>Login</Button>
-                    <Container className="form-info-bottom">
+                    <Container className="form-info-bottom d-flex flex-column justify-content-center align-items-center p-3">
                         <p>Need to make an account?</p>
                         <a href="/register">Register</a>
                     </Container>

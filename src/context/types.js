@@ -16,3 +16,5 @@ export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 export const SET_LOADING = 'SET_LOADING';
 
+
+export const MODAL_SHOW = 'MODAL_SHOW';

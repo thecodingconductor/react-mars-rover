@@ -34,6 +34,54 @@ const AuthState = props => {
 
     const [state, dispatch] = useReducer(authReducer, initialState);
 
+
+    const createUser = async () => {
+
+        const salt = await bcryptjs.genSalt(10);
+
+        const user = {
+            name: "test",
+            email: "test@test.com",
+            password: "TestAccount"
+        }
+
+        user.password = await bcryptjs.hash(user.password, salt);
+
+        user.id = v4();
+
+
+       
+        user.favorites = [];
+
+        const payload = {
+            user: {
+                id: user.id,
+            },
+        };
+
+        jwt.sign(
+            payload,
+            jwtSecret,
+            {
+                expiresIn: 3600,
+            },
+            (err, token) => {
+                if (err) throw err;
+
+                localStorage.setItem('token', JSON.stringify(token))
+
+                localStorage.setItem('user', JSON.stringify(user));
+
+                dispatch({
+                    type: REGISTER_USER,
+                    payload: user
+                })
+
+                // loadUser();
+            }
+        );
+    }
+
     const loadUser = () => {
 
         if (!localStorage.getItem('token')) {
@@ -238,7 +286,8 @@ const AuthState = props => {
             logout,
             clearErrors,
             checkEmail,
-            deleteFavorite
+            deleteFavorite,
+            createUser
         }}>
             {props.children}
         </AuthContext.Provider>

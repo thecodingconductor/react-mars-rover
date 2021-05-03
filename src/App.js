@@ -1,4 +1,5 @@
 import './App.css';
+import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -12,6 +13,7 @@ import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import ImageState from './context/image/ImageState';
 import Alerts from './components/layout/Alerts';
+
 
 const App = () => {
   return (
